@@ -19,6 +19,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        // We use a special build type for Espresso tests so that we can replace animated resources
+        // with non-animated variations during the tests.
+        espresso {
+            initWith(buildTypes.debug)
+        }
     }
     lintOptions {
         abortOnError false
@@ -37,4 +43,20 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.support:design:26.1.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestCompile 'com.android.support.test:runner:1.0.0'
+    androidTestCompile 'com.android.support.test:rules:1.0.0'
+
+    // Espresso dependencies
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-web:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso.idling:idling-concurrent:3.0.0'
+
+    // The following Espresso dependency can be either "compile"
+    // or "androidTestCompile", depending on the app's implementation
+    // androidTestCompile for now, might change later
+    androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:3.0.0'
 }
