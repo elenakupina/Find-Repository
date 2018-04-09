@@ -15,11 +15,25 @@ class SearchResultTest(){
     @Test
     fun matchesLink(){
         val searchScreen = SearchScreen()
-        val searchResultTest = SearchScreen().tapOnSearchButton()
+        val searchResultScreen = SearchScreen().tapOnSearchButton()
+        val repo = "JetBrains/kotlin"
+        val gitHubScreen = searchResultScreen.tapOnARepoInSearchList(repo)
 
         val textSearchForRepo = "Kotlin"
+
         searchScreen.searchForRepos(textSearchForRepo)
         searchScreen.tapOnSearchButton()
+
+
+    }
+
+    @Test
+    fun verifyEmptyViewUsersReposFieldHasErrorMessage(){
+        val searchScreen = SearchScreen()
+        val searchResultScreen = SearchScreen().tapOnViewButton()
+
+        val emptyText = ""
+        val textViewUsersRepo = searchScreen.viewUsersRepos(emptyText)
 
 
 
