@@ -19,5 +19,14 @@ class SearchResultScreen(){
         return GitHubScreen()
     }
 
+    fun errorMessage(): SearchResultScreen{
+        onView(withText("User not found :( Go back and try again!"))
+                .check(matches((isDisplayed())))
+        return SearchResultScreen()
+
+    }
+
+
+
 
 }

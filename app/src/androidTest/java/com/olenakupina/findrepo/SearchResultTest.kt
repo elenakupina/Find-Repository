@@ -1,11 +1,13 @@
 package com.olenakupina.findrepo
 
 import android.support.test.rule.ActivityTestRule
+import android.support.test.runner.AndroidJUnit4
 import com.olenakupina.findrepo.Screens.SearchScreen
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
-
+@RunWith(AndroidJUnit4::class)
 class SearchResultTest(){
 
     @Rule
@@ -21,7 +23,7 @@ class SearchResultTest(){
 
         val textSearchForRepo = "Kotlin"
 
-        searchScreen.searchForRepos(textSearchForRepo)
+        searchScreen.typeTextInSearchForReposField(textSearchForRepo)
         searchScreen.tapOnSearchButton()
 
 
@@ -31,9 +33,15 @@ class SearchResultTest(){
     fun verifyEmptyViewUsersReposFieldHasErrorMessage(){
         val searchScreen = SearchScreen()
         val searchResultScreen = SearchScreen().tapOnViewButton()
-
+        val globalTimeOut = 5000L
         val emptyText = ""
-        val textViewUsersRepo = searchScreen.viewUsersRepos(emptyText)
+        val viewButton = searchScreen.tapOnViewButton()
+        val textViewUsersRepo = searchScreen.typeTextInViewUsersReposField(emptyText).tapOnViewButton()
+        Thread.sleep(5000)
+        searchResultScreen.errorMessage()
+        //searchScreen.waitForExists(5000)
+                //.waitForExists(globalTimeout)
+        //searchResultScreen.errorMessage()
 
 
 

@@ -15,13 +15,13 @@ class SearchScreen(){
                 .check(matches(isDisplayed()))
     }
 
-    fun searchForRepos(text: String): SearchScreen{
+    fun typeTextInSearchForReposField(text: String): SearchScreen{
         onView(withId(R.id.searchEditText))
                 .perform(typeText(text))
         return this
     }
 
-    fun viewUsersRepos(text: String): SearchScreen{
+    fun typeTextInViewUsersReposField(text: String): SearchScreen{
         onView(withId(R.id.userRepoEditText))
                 .perform(typeText(text))
         return this
@@ -38,6 +38,7 @@ class SearchScreen(){
                 .perform(click())
         return SearchResultScreen()
     }
+
 
 
 
