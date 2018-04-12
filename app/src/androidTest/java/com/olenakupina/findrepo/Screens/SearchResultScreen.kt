@@ -2,8 +2,6 @@ package com.olenakupina.findrepo.Screens
 
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.pressBack
-
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -37,8 +35,9 @@ class SearchResultScreen(): BaseScreen(){
         return GitHubScreen()
     }
 
-    fun back(){
-       pressBack()
+    fun back(): SearchScreen{
+        uiDevice.pressBack()
+        return SearchScreen()
     }
 
     fun verifyWeAreOnSearchRusultScreen(): SearchResultScreen{

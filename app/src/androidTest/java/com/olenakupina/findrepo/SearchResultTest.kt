@@ -22,30 +22,21 @@ class SearchResultTest(): BaseScreen(){
         val textSearchForRepo = "Kotlin"
         searchScreen.typeTextInSearchForReposField(textSearchForRepo)
         val searchResultScreen = SearchScreen().tapOnSearchButton()
-        //val repo = "JetBrains/kotlin"
-
-        searchResultScreen.chromeBrowser
         val gitHubScreen = searchResultScreen.tapOnARepoInSearchList()
         val actualUrl = gitHubScreen.actualUrl
-
 
         val expectedUrl = "https://github.com/JetBrains/kotlin"
 
         Assert.assertEquals("$actualUrl is equal $expectedUrl", expectedUrl, actualUrl)
-
-
-
     }
 
     @Test
     fun verifyEmptyViewUsersReposFieldHasErrorMessage(){
         val searchScreen = SearchScreen()
         val emptyText = ""
-        val textViewUsersRepo = searchScreen.typeTextInViewUsersReposField(emptyText)
+        searchScreen.typeTextInViewUsersReposField(emptyText)
         val searchResultScreen = searchScreen.tapOnViewButton()
         searchScreen.verifyErrorMessageIsExist()
-
-
     }
 
     @Test
@@ -54,12 +45,8 @@ class SearchResultTest(): BaseScreen(){
         val textSearchForRepo = "Kotlin"
         searchScreen.typeTextInSearchForReposField(textSearchForRepo)
         val searchResultScreen = SearchScreen().tapOnSearchButton()
-
-        searchResultScreen.chromeBrowser
         val gitHubScreen = searchResultScreen.tapOnARepoInSearchList()
         gitHubScreen.back()
-        searchResultScreen
         searchResultScreen.back()
-        searchScreen
     }
 }

@@ -2,7 +2,6 @@ package com.olenakupina.findrepo.Screens
 
 
 
-import android.support.test.espresso.action.ViewActions.pressBack
 import android.support.test.uiautomator.UiSelector
 import junit.framework.Assert
 
@@ -16,8 +15,9 @@ class GitHubScreen(): BaseScreen() {
         Assert.assertTrue("GitHub page isn’t open", url.waitForExists(3000))
     }
 
-    fun back(){
-        pressBack()
+    fun back(): SearchResultScreen{
+        uiDevice.pressBack()
+        return SearchResultScreen()
     }
 
 }
