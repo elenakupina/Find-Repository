@@ -6,9 +6,11 @@ import android.support.test.espresso.action.ViewActions.typeText
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.uiautomator.UiSelector
 import com.olenakupina.findrepo.R
+import junit.framework.Assert
 
-class SearchScreen(){
+class SearchScreen(): BaseScreen(){
 
     init {
         onView(withId(R.id.searchEditText))
@@ -39,7 +41,10 @@ class SearchScreen(){
         return SearchResultScreen()
     }
 
+    val errorMessage = uiDevice.findObject(UiSelector().resourceId("com.olenakupina.findrepo:id/snackbar_text"))
 
-
-
+    fun verifyErrorMessageIsExist(): SearchResultScreen{
+        Assert.assertTrue("GitHub page isn’t open", errorMessage.waitForExists(3000))
+        return SearchResultScreen()
+    }
 }
